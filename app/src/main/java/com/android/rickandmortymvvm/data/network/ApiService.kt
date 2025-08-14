@@ -1,6 +1,6 @@
-package com.android.rickandmortymvvm.network
+package com.android.rickandmortymvvm.data.network
 
-import com.android.rickandmortymvvm.data.CharacterResponse
+import com.android.rickandmortymvvm.data.model.CharacterResponse
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit

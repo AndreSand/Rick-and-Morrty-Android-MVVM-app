@@ -1,4 +1,4 @@
-package com.android.rickandmortymvvm.data
+package com.android.rickandmortymvvm.data.model
 
 import kotlinx.serialization.Serializable
 @Serializable
