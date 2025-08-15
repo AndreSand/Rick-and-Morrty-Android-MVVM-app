@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 data class AppUiState(
-    val apps: List<Character> = emptyList(),
+    val characters: List<Character> = emptyList(),
     val isLoading: Boolean = false,
     val error: String? = null
 )
@@ -30,9 +30,9 @@ class AppViewModel(private val repository: CharacterRepository = CharacterReposi
             _uiState.value = _uiState.value.copy(isLoading = true)
 
             try {
-                val apps = repository.getCharacters()
+                val characters = repository.getCharacters()
                 _uiState.value = _uiState.value.copy(
-                    apps = apps, isLoading = false
+                    characters = characters, isLoading = false
                 )
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(

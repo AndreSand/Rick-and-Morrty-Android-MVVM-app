@@ -73,6 +73,10 @@ dependencies {
     // Integration with ViewModels
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.2")
 
+    // Navigation 3 dependencies
+    implementation("androidx.navigation3:navigation3-runtime:1.0.0-alpha07")
+    implementation("androidx.navigation3:navigation3-ui:1.0.0-alpha07")
+    
     // Unit Testing Dependencies
     testImplementation(libs.junit)
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0")
