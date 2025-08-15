@@ -13,7 +13,7 @@ interface RickandMortyApi {
 }
 
 object ApiService {
-    private const val BASE_URL = "https://rickandmortyapi.com/api/"
+    const val BASE_URL = "https://rickandmortyapi.com/api/"
 
     val json = Json {
         ignoreUnknownKeys = true
