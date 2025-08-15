@@ -6,10 +6,14 @@ import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.Retrofit
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface RickandMortyApi {
     @GET("character")
     suspend fun getCharacters(): CharacterResponse
+    
+    @GET("character")
+    suspend fun getCharacters(@Query("page") page: Int): CharacterResponse
 }
 
 object ApiService {
