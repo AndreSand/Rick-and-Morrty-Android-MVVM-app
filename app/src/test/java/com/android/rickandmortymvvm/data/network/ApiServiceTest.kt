@@ -140,7 +140,7 @@ class ApiServiceTest {
     @Test
     fun `ApiService object has correct base URL`() {
         // When
-        val baseUrl = ApiService.BASE_URL
+        val baseUrl = ApiClient.BASE_URL
 
         // Then
         assertEquals("https://rickandmortyapi.com/api/", baseUrl)
@@ -149,7 +149,7 @@ class ApiServiceTest {
     @Test
     fun `ApiService api property is not null`() {
         // When
-        val apiInstance = ApiService.api
+        val apiInstance = ApiClient.api
 
         // Then
         assertNotNull(apiInstance)
