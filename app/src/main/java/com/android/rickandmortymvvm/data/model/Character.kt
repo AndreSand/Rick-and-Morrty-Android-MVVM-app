@@ -11,5 +11,14 @@ data class Character(
 
 @Serializable
 data class CharacterResponse(
-    val results: List<Character>
+    val results: List<Character>,
+    val info: Info
+)
+
+@Serializable
+data class Info(
+    val count: Int,
+    val pages: Int,
+    val next: String?,
+    val prev: String?
 )
