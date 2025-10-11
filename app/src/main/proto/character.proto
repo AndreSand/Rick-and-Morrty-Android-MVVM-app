@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package com.android.rickandmortymvvm;
+
+option java_package = "com.android.rickandmortymvvm.data.proto";
+option java_outer_classname = "CharacterProto";
+
+// Character message - represents a single Rick and Morty character
+message Character {
+  int32 id = 1;
+  string name = 2;
+  string status = 3;
+  string image = 4;
+}
+
+// CharacterResponse message - represents the API response with multiple characters
+message CharacterResponse {
+  repeated Character results = 1;
+}
