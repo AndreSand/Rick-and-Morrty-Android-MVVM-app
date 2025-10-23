@@ -12,21 +12,31 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.android.rickandmortymvvm.mvi.CharacterScreen
+import com.android.rickandmortymvvm.mvi.CharacterViewModel
 import com.android.rickandmortymvvm.ui.theme.RickandMortyMVVMTheme
-import com.android.rickandmortymvvm.view.MainScreen
-import com.android.rickandmortymvvm.viewmodel.AppViewModel
 
+/**
+ * Main Activity using MVI Architecture
+ * 
+ * MVI Flow:
+ * Activity → CharacterScreen (View) → CharacterViewModel → CharacterState
+ */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-
-            val viewModel: AppViewModel = viewModel()
+            // Create ViewModel using viewModel() factory
+            val viewModel: CharacterViewModel = viewModel()
 
             RickandMortyMVVMTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MainScreen(viewModel, modifier = Modifier.padding(innerPadding))
+                    // Use MVI CharacterScreen instead of MVVM MainScreen
+                    CharacterScreen(
+                        viewModel = viewModel,
+                        modifier = Modifier.padding(innerPadding)
+                    )
                 }
             }
         }
