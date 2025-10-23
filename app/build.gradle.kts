@@ -73,6 +73,9 @@ dependencies {
     // Integration with ViewModels
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.2")
 
+    // Material pull-to-refresh for MVI
+    implementation("androidx.compose.material:material:1.7.8")
+
     // Unit Testing Dependencies
     testImplementation(libs.junit)
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0")
