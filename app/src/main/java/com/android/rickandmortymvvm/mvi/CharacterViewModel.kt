@@ -3,6 +3,7 @@ package com.android.rickandmortymvvm.mvi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.rickandmortymvvm.data.repository.CharacterRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -10,6 +11,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * MVI ViewModel for Character feature
@@ -20,8 +22,9 @@ import kotlinx.coroutines.launch
  * 3. View observes State → Renders UI
  * 4. Optional: ViewModel sends SideEffect → View handles one-time events
  */
-class CharacterViewModel(
-    private val repository: CharacterRepository = CharacterRepository()
+@HiltViewModel
+class CharacterViewModel @Inject constructor(
+    private val repository: CharacterRepository
 ) : ViewModel() {
 
     // State: Single source of truth for UI state

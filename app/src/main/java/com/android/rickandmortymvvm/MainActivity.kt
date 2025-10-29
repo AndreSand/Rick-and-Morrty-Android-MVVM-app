@@ -15,6 +15,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.android.rickandmortymvvm.mvi.CharacterScreen
 import com.android.rickandmortymvvm.mvi.CharacterViewModel
 import com.android.rickandmortymvvm.ui.theme.RickandMortyMVVMTheme
+import dagger.hilt.android.AndroidEntryPoint
+//import androidx.hilt.navigation.compose.hiltViewModel
 
 /**
  * Main Activity using MVI Architecture
@@ -22,6 +24,7 @@ import com.android.rickandmortymvvm.ui.theme.RickandMortyMVVMTheme
  * MVI Flow:
  * Activity → CharacterScreen (View) → CharacterViewModel → CharacterState
  */
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

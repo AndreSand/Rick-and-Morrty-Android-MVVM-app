@@ -1,10 +1,10 @@
 package com.android.rickandmortymvvm.data.repository
 
 import com.android.rickandmortymvvm.data.model.Character
-import com.android.rickandmortymvvm.data.network.ApiClient
 import com.android.rickandmortymvvm.data.network.RickandMortyApi
+import javax.inject.Inject
 
-class CharacterRepository(private val api: RickandMortyApi = ApiClient.api) {
+class CharacterRepository @Inject constructor(private val api: RickandMortyApi) {
     suspend fun getCharacters(): List<Character> {
         return try {
             api.getCharacters().results
