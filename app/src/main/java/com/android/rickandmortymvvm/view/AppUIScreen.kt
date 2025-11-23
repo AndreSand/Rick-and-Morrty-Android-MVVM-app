@@ -8,6 +8,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,12 +26,14 @@ import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -42,12 +45,27 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.android.rickandmortymvvm.viewmodel.AppViewModel
 
-@OptIn(ExperimentalMaterial3ExpressiveApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(viewModel: AppViewModel, modifier: Modifier = Modifier) {
-    val state by viewModel.uiState.collectAsState()
+fun AppUIScreen(
+    appViewModel: AppViewModel,
+    onNavigateToDetail: (Int) -> Unit,
+    modifier: Modifier = Modifier
+) {
 
-    Box(modifier = modifier.fillMaxSize()) {
+    Scaffold(
+        topBar = {
+            TopAppBar(title = { Text("Rick and Morty Characters") })
+        },
+//        modifier = modifier.fillMaxSize()
+    ) { paddingValues ->
+        val state by appViewModel.uiState.collectAsState()
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+        ) {
         when {
             state.isLoading -> {
                 // Centered loading indicator with expressive animation
@@ -122,7 +140,10 @@ fun MainScreen(viewModel: AppViewModel, modifier: Modifier = Modifier) {
                             ),
                             exit = fadeOut() + scaleOut()
                         ) {
-                            CharacterCard(character = character)
+                            CharacterCard(
+                                character = character,
+                                onNavigateToDetail = { onNavigateToDetail(character.id) }
+                            )
                         }
                     }
                 }
@@ -150,11 +171,15 @@ fun MainScreen(viewModel: AppViewModel, modifier: Modifier = Modifier) {
             }
         }
     }
+    }
 }
 
-@OptIn(ExperimentalMaterial3ExpressiveApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun CharacterCard(character: com.android.rickandmortymvvm.data.model.Character) {
+private fun CharacterCard(
+    character: com.android.rickandmortymvvm.data.model.Character,
+    onNavigateToDetail: () -> Unit
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -163,7 +188,8 @@ private fun CharacterCard(character: com.android.rickandmortymvvm.data.model.Cha
                     dampingRatio = Spring.DampingRatioMediumBouncy,
                     stiffness = Spring.StiffnessLow
                 )
-            ),
+            )
+            .clickable { onNavigateToDetail() },
         shape = MaterialTheme.shapes.extraLarge, // Expressive shape
         elevation = CardDefaults.elevatedCardElevation(
             defaultElevation = 6.dp,

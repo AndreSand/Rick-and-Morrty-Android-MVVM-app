@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,11 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.android.rickandmortymvvm.ui.theme.RickandMortyMVVMTheme
-import com.android.rickandmortymvvm.view.MainScreen
+import com.android.rickandmortymvvm.view.AppNavigation
 import com.android.rickandmortymvvm.viewmodel.AppViewModel
 
 class MainActivity : ComponentActivity() {
-    @OptIn(ExperimentalMaterial3ExpressiveApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -27,10 +25,10 @@ class MainActivity : ComponentActivity() {
 
             RickandMortyMVVMTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MainScreen(
-                        viewModel = viewModel,
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                        AppNavigation(
+                            viewModel = viewModel,
+                            modifier = Modifier.padding(innerPadding)
+                        )
                 }
             }
         }
